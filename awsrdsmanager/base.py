@@ -3,8 +3,18 @@ import os
 
 
 class Base(object):
-    @classmethod
-    def _add_logging_options(self, argument_parser):
+    """
+    Handles common functionality across all cli command classes.
+    """
+
+    @staticmethod
+    def _add_logging_options(argument_parser):
+        """
+        Add logging cli options.
+
+        :param argparse.ArgumentParser argument_parser:
+        :return:
+        """
 
         logging_args = argument_parser.add_argument_group('Logging')
         logging_args.add_argument('--log-level', choices=['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG'],
@@ -48,4 +58,3 @@ class Base(object):
 
         if not self.enable_logging:
             self.logger.disabled = True
-
