@@ -139,7 +139,7 @@ class TestSunsetRDSSnapshots(TestCase):
         try:
             raise NoSnapshotsError('hallo')
         except NoSnapshotsError as e:
-            self.assertEqual(e.message, "No snapshots found for database 'hallo'")
+            self.assertEqual(e.args[0], "No snapshots found for database 'hallo'")
 
     def test_run_no_snapshots(self):
         command_class = SunsetRDSSnapshots.load(args=[
