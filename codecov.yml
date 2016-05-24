@@ -1,0 +1,12 @@
+---
+codecov:
+  branch: "master"
+coverage:
+  ignore:
+    - "tests/*"
+  status:
+    patch:
+      default:
+        enabled: yes
+        target: 80%
+        threshold: 2%
