@@ -14,4 +14,4 @@ test: clean
 	tox
 
 clean:
-	rm -rf dist build *.egg-info MANIFEST .tox .eggs
+	rm -rf dist build *.egg-info MANIFEST .tox .eggs .tox .coverage
