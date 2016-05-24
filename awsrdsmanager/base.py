@@ -34,6 +34,11 @@ class Base(object):
         self._init_logger()
 
     def _init_logger(self):
+        """
+        Initialises a logger
+        
+        :return:
+        """
         self.logger = logging.getLogger(__name__)
 
         self.debug = (os.environ.get('DEBUG', '0') == '1')

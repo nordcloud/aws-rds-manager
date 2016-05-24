@@ -17,17 +17,8 @@ class SunsetRDSSnapshots(Base):
         :param List[str] args: List of cli args
         :return awsrdsmanager.SunsetRDSSnapshots:
         """
-        argparser = argparse.ArgumentParser()
-        argparser.add_argument('--database-name', help='Name of the database snapshot.', required=True)
-        argparser.add_argument('--sunset-period', help='Number of snapshots to retains.', required=True, type=int)
-        argparser.add_argument('--dry-run', help='Show snapshots to be deleted without deleting them',
-                               action='store_true', default=False)
 
-        cls._add_logging_options(argparser)
-
-        awsargparser = awsauthhelper.AWSArgumentParser(role_session_name='register-instance', region='us-east-1',
-                                                       parents=[argparser])
-
+        awsargparser = cls._build_arg_parse()
         cli_options = awsargparser.parse_args(args=args[1:])
 
         # Perform authentication
@@ -44,6 +35,25 @@ class SunsetRDSSnapshots(Base):
             logging_level=cli_options.log_level,
             session=credentials.create_session()
         )
+
+    @classmethod
+    def _build_arg_parse(cls):
+        """
+        Build the argument parser and return it
+
+        :return:
+        """
+        argparser = argparse.ArgumentParser()
+        argparser.add_argument('--database-name', help='Name of the database snapshot.', required=True)
+        argparser.add_argument('--sunset-period', help='Number of snapshots to retains.', required=True, type=int)
+        argparser.add_argument('--dry-run', help='Show snapshots to be deleted without deleting them',
+                               action='store_true', default=False)
+
+        cls._add_logging_options(argparser)
+
+        awsargparser = awsauthhelper.AWSArgumentParser(role_session_name='register-instance', region='us-east-1',
+                                                       parents=[argparser])
+        return awsargparser
 
     def __init__(self, database_name, sunset_period, region, session, logging_level='INFO', enable_logging=True,
                  dry_run=False):
@@ -76,10 +86,9 @@ class SunsetRDSSnapshots(Base):
         :return Dict[str, Dict[str, str]]:
         """
 
-        session = self.session(region=self.region)
-        rds_client = session.client('rds')
+        self.rds_client = self._get_rds_client(region=self.region)
 
-        snapshot_response = rds_client.describe_db_snapshots(
+        snapshot_response = self.rds_client.describe_db_snapshots(
             DBInstanceIdentifier=self.database_name,
             SnapshotType='manual'
         )
@@ -88,7 +97,7 @@ class SunsetRDSSnapshots(Base):
             snapshot_response['DBSnapshots']
         ))
 
-        if not ('DBSnapshots' in snapshot_response):
+        if not snapshot_response['DBSnapshots']:
             raise NoSnapshotsError(self.database_name)
 
         remaining_snapshots, deprecated_snapshots = self._sort_snapshots_by_threshold_period(
@@ -98,12 +107,20 @@ class SunsetRDSSnapshots(Base):
 
         if not self.dry_run:
             for snapshot in deprecated_snapshots:
-                rds_client.delete_db_snapshot(DBSnapshotIdentifier=snapshot['DBSnapshotIdentifier'])
+                self.rds_client.delete_db_snapshot(DBSnapshotIdentifier=snapshot['DBSnapshotIdentifier'])
 
         return {
             'Snapshots': remaining_snapshots,
             'DeletedSnapshots': deprecated_snapshots
         }
+
+    def _get_rds_client(self, region):
+        """
+        Return a boto3.rds client object
+
+        :return:
+        """
+        return self.session(region=region).client('rds')
 
     def _sort_snapshots_by_threshold_period(self, threshold_count, snapshots):
         """
@@ -137,6 +154,10 @@ class SunsetRDSSnapshots(Base):
 
 
 class NoSnapshotsError(Exception):
+    """
+    Exception thrown if no snapshots are found
+    """
+
     def __init__(self, database_name):
         super(NoSnapshotsError, self).__init__(
             "No snapshots found for database \'{name}\'".format(name=database_name)
