@@ -1,12 +1,12 @@
 .. image:: https://www.quantifiedcode.com/api/v1/project/d0e2098bfb494a17b26851c590681005/badge.svg
-:target: https://www.quantifiedcode.com/app/project/d0e2098bfb494a17b26851c590681005
+  :target: https://www.quantifiedcode.com/app/project/d0e2098bfb494a17b26851c590681005
   :alt: Code issues
 
 .. image:: https://travis-ci.org/drewsonne/aws-rds-manager.svg?branch=master
-:target: https://travis-ci.org/drewsonne/aws-rds-manager
+  :target: https://travis-ci.org/drewsonne/aws-rds-manager
 
 .. image:: https://codecov.io/gh/drewsonne/aws-rds-manager/branch/master/graph/badge.svg
-:target: https://codecov.io/gh/drewsonne/aws-rds-manager
+  :target: https://codecov.io/gh/drewsonne/aws-rds-manager
 
 ===============
 aws-rds-manager
