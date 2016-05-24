@@ -2,7 +2,7 @@
   :target: https://badge.fury.io/py/aws-rds-manager
 
 .. image:: https://img.shields.io/pypi/pyversions/aws-rds-manager.svg
-  :target: https://github.com/drewsonne/aws-rds-manager
+  :target: https://pypi.python.org/pypi/aws-rds-manager/1.0.2
 
 .. image:: https://www.quantifiedcode.com/api/v1/project/d0e2098bfb494a17b26851c590681005/badge.svg
   :target: https://www.quantifiedcode.com/app/project/d0e2098bfb494a17b26851c590681005
