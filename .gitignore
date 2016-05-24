@@ -109,3 +109,6 @@ $RECYCLE.BIN/
 .python-version
 *.pyc
 MANIFEST
+aws_rds_manager.egg-info
+build
+dist
