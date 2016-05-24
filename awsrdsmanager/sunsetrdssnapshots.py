@@ -1,12 +1,14 @@
 import argparse
-from operator import getitem
-
 import awsauthhelper
 
 from awsrdsmanager.base import Base
 
 
 class SunsetRDSSnapshots(Base):
+    """
+    Control the number of snapshots for an RDS database to be retained.
+    """
+
     @classmethod
     def load(cls, args):
         """
@@ -118,7 +120,8 @@ class SunsetRDSSnapshots(Base):
 
         return sorted_snapshots[:threshold_count], sorted_snapshots[threshold_count:]
 
-    def _sort_by_key(self, key, dict_list):
+    @staticmethod
+    def _sort_by_key(key, dict_list):
         """
         Sort a list of dictionaries by a key
 
