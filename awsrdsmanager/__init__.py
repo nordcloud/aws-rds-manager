@@ -24,5 +24,11 @@ class CommonJSONEncoder(json.JSONEncoder):
     """
 
     def default(self, obj):
+        """
+        Override the default JSON encode to allow the correct parsing of Decimal objects
+
+        :param obj:
+        :return:
+        """
         if isinstance(obj, decimal.Decimal):
             return str(obj)
