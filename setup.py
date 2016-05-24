@@ -4,7 +4,7 @@ setup(
     name='aws-rds-manager',
     version='1.0.0',
     packages=['awsrdsmanager'],
-    install_requires=['aws-auth-helper'],
+    install_requires=['aws-auth-helper','six'],
     url='',
     license='GPLv2',
     author='Drew J. Sonne',

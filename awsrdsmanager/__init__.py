@@ -1,4 +1,4 @@
-import json, decimal
+import json
 
 
 def json_pprint(data):
@@ -12,23 +12,5 @@ def json_pprint(data):
         data,
         sort_keys=True,
         indent=4,
-        separators=(',', ': '),
-        cls=CommonJSONEncoder
+        separators=(',', ': ')
     ))
-
-
-class CommonJSONEncoder(json.JSONEncoder):
-    """
-    Common JSON Encoder
-    json.dumps(myString, cls=CommonJSONEncoder)
-    """
-
-    def default(self, obj):
-        """
-        Override the default JSON encode to allow the correct parsing of Decimal objects
-
-        :param obj:
-        :return:
-        """
-        if isinstance(obj, decimal.Decimal):
-            return str(obj)
