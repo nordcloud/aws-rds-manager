@@ -1,12 +1,18 @@
-.. image:: https://www.quantifiedcode.com/api/v1/project/d0e2098bfb494a17b26851c590681005/badge.svg
-  :target: https://www.quantifiedcode.com/app/project/d0e2098bfb494a17b26851c590681005
+.. image:: https://badge.fury.io/py/aws-rds-manager.svg
+  :target: https://badge.fury.io/py/aws-rds-manager
+
+.. image:: https://img.shields.io/pypi/pyversions/aws-rds-manager.svg
+  :target: https://pypi.python.org/pypi/aws-rds-manager
+
+.. image:: https://www.quantifiedcode.com/api/v1/project/cc9c76aff11b4442b0dae86ffdd9d69f/badge.svg
+  :target: https://www.quantifiedcode.com/app/project/cc9c76aff11b4442b0dae86ffdd9d69f
   :alt: Code issues
 
-.. image:: https://travis-ci.org/drewsonne/aws-rds-manager.svg?branch=master
-  :target: https://travis-ci.org/drewsonne/aws-rds-manager
+.. image:: https://travis-ci.org/nordcloud/aws-rds-manager.svg?branch=master
+  :target: https://travis-ci.org/nordcloud/aws-rds-manager
 
-.. image:: https://codecov.io/gh/drewsonne/aws-rds-manager/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/drewsonne/aws-rds-manager
+.. image:: https://codecov.io/gh/nordcloud/aws-rds-manager/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/nordcloud/aws-rds-manager
 
 ===============
 aws-rds-manager
