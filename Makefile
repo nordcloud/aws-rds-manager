@@ -5,10 +5,10 @@ build:
 	python setup.py sdist bdist_wheel
 
 release-test: clean build
-	twine upload -r pypitest dist/aws-rds-manager-*
+	twine upload -r pypitest dist/aws*
 
 release: clean build
-	twine upload -r pypi dist/aws-rds-manager-*
+	twine upload -r pypi dist/aws*
 
 test: clean
 	tox
