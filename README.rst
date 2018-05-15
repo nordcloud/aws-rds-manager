@@ -4,10 +4,6 @@
 .. image:: https://img.shields.io/pypi/pyversions/aws-rds-manager.svg
   :target: https://pypi.python.org/pypi/aws-rds-manager
 
-.. image:: https://www.quantifiedcode.com/api/v1/project/cc9c76aff11b4442b0dae86ffdd9d69f/badge.svg
-  :target: https://www.quantifiedcode.com/app/project/cc9c76aff11b4442b0dae86ffdd9d69f
-  :alt: Code issues
-
 .. image:: https://travis-ci.org/nordcloud/aws-rds-manager.svg?branch=master
   :target: https://travis-ci.org/nordcloud/aws-rds-manager
 
